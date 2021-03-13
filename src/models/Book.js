@@ -15,5 +15,6 @@ const BookSchema = new Schema(
     timestamps: true,
   }
 );
+BookSchema.set("collection", "Book");
 
-module.exports = mongoose.model("Books", BookSchema);
+module.exports = mongoose.model("Book", BookSchema);
