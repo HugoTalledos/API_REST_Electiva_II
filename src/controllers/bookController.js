@@ -1,10 +1,17 @@
 const Topic = require("../models/Book");
+const Book = require("../models/Book");
 
 module.exports = {
   add: async (req, res) => {
     //   const { title, description, father='root', deleted=false } = req.body;
-    const { body } = req;
-    res.json({ message: "Add book", body });
+    const { title, description, author, gender, editorual } = req.body;
+    const newBook = new Book({ title, description, author, gender, editorual });
+    try {
+      let result = await newBook.save();
+      res.status(200).json({ message: "Add book", result });
+    } catch (error) {
+      res.status(400).json({ error });
+    }
     // const date_added = Date(Date.now()).toString();
     // const topic = new Topic({title, description, date_added, father, deleted});
     // await topic.save();
@@ -19,10 +26,24 @@ module.exports = {
     //   return res.send({ success: "200", response: topic });
   },
   getAll: async (req, res) => {
-    res.json({ message: "Get all book" });
+    try {
+      let books = await Book.find();
+      res.status(200).json({ message: "Get all books", books });
+    } catch (error) {
+      res.status(400).json({ error });
+    }
   },
   update: async (req, res) => {
     const { body } = req;
     res.json({ message: "Update book", body });
+  },
+  delete: async (req, res) => {
+    const { id } = req.body;
+    try {
+      let deletedBook = await Book.findByIdAndDelete(id);
+      res.status(200).json({ message: "Delete book", deletedBook });
+    } catch (error) {
+      res.status(500).json({ error });
+    }
   },
 };
