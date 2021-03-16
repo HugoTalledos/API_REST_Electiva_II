@@ -38,7 +38,7 @@ module.exports = {
     res.json({ message: "Update book", body });
   },
   delete: async (req, res) => {
-    const { id } = req.body;
+    const { id } = req.query;
     try {
       let deletedBook = await Book.findByIdAndDelete(id);
       res.status(200).json({ message: "Delete book", deletedBook });
