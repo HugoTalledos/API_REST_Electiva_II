@@ -3,7 +3,6 @@ const Book = require("../models/Book");
 
 module.exports = {
   add: async (req, res) => {
-    //   const { title, description, father='root', deleted=false } = req.body;
     const { title, description, author, gender, editorual } = req.body;
     const newBook = new Book({ title, description, author, gender, editorual });
     try {
@@ -12,18 +11,16 @@ module.exports = {
     } catch (error) {
       res.status(400).json({ error });
     }
-    // const date_added = Date(Date.now()).toString();
-    // const topic = new Topic({title, description, date_added, father, deleted});
-    // await topic.save();
-    // return res.send({success: '200'});
   },
   getById: async (req, res) => {
     const { id } = req.params;
-    res.json({ message: "Get by id book", id });
-
-    // const topic = await Topic.findById(req.params.id);
-    // if (!(topic.delete === true))
-    //   return res.send({ success: "200", response: topic });
+    try {
+    const book = await Book.findById(id);
+    if (!(book.deleted === true)) return res.status(200).json(book);
+    res.status(200).json({ message: `Book with id: ${id} - not found` })
+    } catch (err) {
+      res.status(500).json({ message: "Unexpected error", err});
+    }
   },
   getAll: async (req, res) => {
     try {
@@ -34,11 +31,17 @@ module.exports = {
     }
   },
   update: async (req, res) => {
-    const { body } = req;
-    res.json({ message: "Update book", body });
+    const { id } = req.params;
+    try {
+      const newBook = { ...req.body };
+      await Book.findByIdAndUpdate(id, newBook);
+      res.status(200).json({ message: "Book updated successfully", newBook });
+    } catch (err) {
+      res.status(500).json({ message: "Unexpected error", err});
+    }
   },
   delete: async (req, res) => {
-    const { id } = req.query;
+    const { id } = req.params;
     try {
       let deletedBook = await Book.findByIdAndDelete(id);
       res.status(200).json({ message: "Delete book", deletedBook });
