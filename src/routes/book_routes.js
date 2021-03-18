@@ -1,7 +1,7 @@
-const express = require('express');
+const express = require("express");
 const bookController = require("../controllers/bookController");
 const BookValidator = require("../middlewares/bookValidator");
-
+const LendValidator = require("../middlewares/lendValidator");
 
 const router = express.Router();
 
@@ -89,7 +89,7 @@ const router = express.Router();
  *         description: State of the book
  */
 
- /**
+/**
  * @swagger
  * path:
  *  /api/book:
@@ -104,7 +104,6 @@ const router = express.Router();
  *        "400":
  *          description: Unexpected error occurred
  */
-
 
 router.get("/", bookController.getAll);
 
@@ -178,7 +177,7 @@ router.post("/", BookValidator.validateSchema, bookController.add);
  *          description: Unexpected error occurred
  */
 
-router.put("/:id", BookValidator.validateSchema, bookController.update);
+// router.put("/:id", BookValidator.validateSchema, bookController.update);
 
 /**
  * @swagger
@@ -202,8 +201,10 @@ router.put("/:id", BookValidator.validateSchema, bookController.update);
  */
 
 router.delete("/:id", bookController.delete);
-
-router.put("/lend", bookController.lend);
+//Prestar libro, cambia el estado de isBorrowed a true y añade el nombre y celular de la persona a quien se le prestó
+router.put("/lend/", LendValidator.validateSchema, bookController.lend);
+// Recuperar libro, es decir, pasa el atributo isBorrowed a false indicando que el libro prestado ha sido devuelto
+router.put("/recover/", bookController.recover);
 
 module.exports = router;
 // router.get("*", bookController.notFound);
