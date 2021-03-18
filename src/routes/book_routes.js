@@ -21,6 +21,19 @@ const router = express.Router();
  *         type: string
  *         required: false
  *         description: Description of the book
+ *       cover:
+ *          type: object
+ *          description: Information about the book cover
+ *          required: false
+ *          properties:
+ *           url:
+ *            type: string
+ *            required: false
+ *            description: Url of the book cover
+ *           alt:
+ *            type: string
+ *            required: false
+ *            description: Alternative text for the book cover
  *       author:
  *         type: string
  *         required: true
@@ -44,6 +57,19 @@ const router = express.Router();
  *         type: string
  *         required: false
  *         description: Description of the book
+ *       cover:
+ *          type: object
+ *          description: Information about the book cover
+ *          required: false
+ *          properties:
+ *           url:
+ *            type: string
+ *            required: false
+ *            description: Url of the book cover
+ *           alt:
+ *            type: string
+ *            required: false
+ *            description: Alternative text for the book cover
  *       author:
  *         type: string
  *         required: true

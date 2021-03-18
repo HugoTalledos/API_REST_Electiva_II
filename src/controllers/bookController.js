@@ -3,8 +3,8 @@ const Book = require("../models/Book");
 
 module.exports = {
   add: async (req, res) => {
-    const { title, description, author, gender, editorual } = req.body;
-    const newBook = new Book({ title, description, author, gender, editorual });
+    const { title, cover, description, author, gender, editorial } = req.body;
+    const newBook = new Book({ title, cover, description, author, gender, editorial });
     try {
       let result = await newBook.save();
       res.status(200).json({ message: "Add book", result });
