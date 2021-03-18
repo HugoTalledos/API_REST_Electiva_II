@@ -7,7 +7,7 @@ const router = express.Router();
 /**
  * @swagger
  * tags:
- *   name: Crud-Books
+ *   name: Crud Books
  *   description: Crud for object books
  * definitions:
  *   Book:
@@ -21,6 +21,19 @@ const router = express.Router();
  *         type: string
  *         required: false
  *         description: Description of the book
+ *       cover:
+ *          type: object
+ *          description: Information about the book cover
+ *          required: false
+ *          properties:
+ *           url:
+ *            type: string
+ *            required: false
+ *            description: Url of the book cover
+ *           alt:
+ *            type: string
+ *            required: false
+ *            description: Alternative text for the book cover
  *       author:
  *         type: string
  *         required: true
@@ -33,6 +46,46 @@ const router = express.Router();
  *         type: string
  *         required: false
  *         description: Editorial of the book
+ *   Book-Update:
+ *     type: object
+ *     properties:
+ *       title:
+ *         type: string
+ *         required: true
+ *         description: Title of the book
+ *       description:
+ *         type: string
+ *         required: false
+ *         description: Description of the book
+ *       cover:
+ *          type: object
+ *          description: Information about the book cover
+ *          required: false
+ *          properties:
+ *           url:
+ *            type: string
+ *            required: false
+ *            description: Url of the book cover
+ *           alt:
+ *            type: string
+ *            required: false
+ *            description: Alternative text for the book cover
+ *       author:
+ *         type: string
+ *         required: true
+ *         description: Author of the book
+ *       gender:
+ *         type: string
+ *         required: false
+ *         description: Gender of the book
+ *       editorial:
+ *         type: string
+ *         required: false
+ *         description: Editorial of the book
+ *       deleted:
+ *         type: boolean
+ *         required: true
+ *         description: State of the book
  */
 
  /**
@@ -40,7 +93,7 @@ const router = express.Router();
  * path:
  *  /api/book:
  *    get:
- *      tags: [Crud-Books]
+ *      tags: [Crud Books]
  *      summary: Get all books from database
  *      requestBody:
  *        required: false
@@ -58,13 +111,13 @@ router.get("/", bookController.getAll);
  * path:
  *  /api/book/{id}:
  *    get:
- *      tags: [Crud-Books]
+ *      tags: [Crud Books]
  *      summary: Get information from a specific book
  *      parameters:
  *        - name: id
  *          required: true
  *          type: string
- *          in: query
+ *          in: path
  *      requestBody:
  *        required: false
  *      responses:
@@ -81,7 +134,7 @@ router.get("/:id", bookController.getById);
  * path:
  *  /api/book:
  *    post:
- *      tags: [Crud-Books]
+ *      tags: [Crud Books]
  *      summary: Create new book
  *      requestBody:
  *        required: true
@@ -103,19 +156,19 @@ router.post("/", BookValidator.validateSchema, bookController.add);
  * path:
  *  /api/book/{id}:
  *    put:
- *      tags: [Crud-Books]
+ *      tags: [Crud Books]
  *      summary: Update information of a book
  *      parameters:
  *        - name: id
  *          required: true
  *          type: string
- *          in: query
+ *          in: path
  *      requestBody:
  *        required: true
  *        content:
  *              application/json:
  *                schema:
- *                  $ref: '#/definitions/Book'
+ *                  $ref: '#/definitions/Book-Update'
  *      responses:
  *        "200":
  *          description: Book has been updated succesfully!
@@ -123,20 +176,20 @@ router.post("/", BookValidator.validateSchema, bookController.add);
  *          description: Unexpected error occurred
  */
 
-router.put("/:id", bookController.update);
+router.put("/:id", BookValidator.validateSchema, bookController.update);
 
 /**
  * @swagger
  * path:
  *  /api/book/{id}:
  *    delete:
- *      tags: [Crud-Books]
+ *      tags: [Crud Books]
  *      summary: Delete information of a book
  *      parameters:
  *        - name: id
  *          required: true
  *          type: string
- *          in: query
+ *          in: path
  *      requestBody:
  *        required: false
  *      responses:
