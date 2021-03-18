@@ -150,5 +150,7 @@ router.put("/:id", bookController.update);
 
 router.delete("/:id", bookController.delete);
 
+router.put("/lend", bookController.lend);
+
 module.exports = router;
 // router.get("*", bookController.notFound);

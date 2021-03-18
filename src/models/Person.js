@@ -8,7 +8,12 @@ const PersonSchema = new Schema(
       required: true,
     },
     cellphone: {
-      type: number,
+      type: Number,
+      required: false,
+    },
+    cedula: {
+      type: Number,
+      required: true,
     },
   },
   {
