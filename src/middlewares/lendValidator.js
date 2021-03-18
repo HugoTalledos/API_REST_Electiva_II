@@ -8,7 +8,8 @@ const LendValidator = Joi.object({
 
 module.exports = {
   validateSchema: (req, res, next) => {
-    let { id, name, cellphone } = req.body;
+    let { id } = req.params;
+    let { name, cellphone } = req.body;
     const { error, value } = LendValidator.validate({
       id,
       name,
