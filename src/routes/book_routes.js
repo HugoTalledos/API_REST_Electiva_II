@@ -5,6 +5,7 @@ const BookValidator = require("../middlewares/bookValidator");
 
 router.post("/", BookValidator.validateSchema, bookController.add);
 router.put("/update", bookController.update);
+router.put("/lend", bookController.lend);
 router.get("/:id", bookController.getById);
 router.get("/", bookController.getAll);
 router.delete("/", bookController.delete);
