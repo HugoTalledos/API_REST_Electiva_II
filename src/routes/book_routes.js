@@ -12,6 +12,17 @@ const router = express.Router();
  *   name: Crud Books
  *   description: Crud for object books
  * definitions:
+ *   Person: 
+ *     type: object
+ *     properties:
+ *       name:
+ *         type: string
+ *         required: true
+ *         description: Name of the person to whom the book is loaned
+ *       cellphone:
+ *         type: string
+ *         required: true
+ *         description: Phone number of the person to whom the book is loaned
  *   Book:
  *     type: object
  *     properties:
@@ -106,7 +117,6 @@ const router = express.Router();
  *          description: Unexpected error occurred
  */
 
-
 router.get("/", bookController.getAll);
 
 /**
@@ -149,7 +159,7 @@ router.get("/:id", bookController.getById);
  *        "200":
  *          description: Book has been created succesfully!
  *        "400":
- *          description: Unexpected error occurred
+ *          description: Missing field or Unexpected error occurred
  */
 
 router.post("/", BookValidator.validateSchema, bookController.add);
@@ -176,10 +186,10 @@ router.post("/", BookValidator.validateSchema, bookController.add);
  *        "200":
  *          description: Book has been updated succesfully!
  *        "400":
- *          description: Unexpected error occurred
+ *          description: Missing field or Unexpected error occurred
  */
 
-// router.put("/:id", BookValidator.validateSchema, bookController.update);
+router.put("/:id", BookValidator.validateSchema, bookController.update);
 
 /**
  * @swagger
@@ -203,10 +213,60 @@ router.post("/", BookValidator.validateSchema, bookController.add);
  */
 
 router.delete("/:id", bookController.delete);
-//Prestar libro, cambia el estado de isBorrowed a true y añade el nombre y celular de la persona a quien se le prestó
-router.put("/lend/", LendValidator.validateSchema, bookController.lend);
-// Recuperar libro, es decir, pasa el atributo isBorrowed a false indicando que el libro prestado ha sido devuelto
-router.put("/recover/", bookController.recover);
+
+/**
+ * @swagger
+ * path:
+ *  /api/book/lend/{id}:
+ *    put:
+ *      tags: [Crud Books]
+ *      summary: Change the status from isBorrowed to true and add the name and cell phone of the person to whom it was loaned
+ *      parameters:
+ *        - name: id
+ *          required: true
+ *          type: string
+ *          in: path
+ *      requestBody:
+ *        required: true
+ *        content:
+ *              application/json:
+ *                schema:
+ *                  $ref: '#/definitions/Person'
+ *      responses:
+ *        "200":
+ *          description: Book borrowed successfully!
+ *        "400":
+ *          description: Can not borrow book cause it already is borrowed or missing field
+ *        "500":
+ *          description: Book not found or Unexpected error
+ */
+
+router.put("/lend/:id", LendValidator.validateSchema, bookController.lend);
+
+/**
+ * @swagger
+ * path:
+ *  /api/book/recover/{id}:
+ *    put:
+ *      tags: [Crud Books]
+ *      summary: Retrieve book, that is, it sets the isBorrowed attribute to false indicating that the borrowed book has been returned
+ *      parameters:
+ *        - name: id
+ *          required: true
+ *          type: string
+ *          in: path
+ *      requestBody:
+ *        required: false
+ *      responses:
+ *        "200":
+ *          description: Book recovered successfully
+ *        "400":
+ *          description: Can not recover book cause it already is recovered
+ *        "500":
+ *          description: Book not found or Unexpected error
+ */
+
+router.put("/recover/:id", bookController.recover);
 
 module.exports = router;
 // router.get("*", bookController.notFound);

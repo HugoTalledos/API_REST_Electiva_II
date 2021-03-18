@@ -57,11 +57,12 @@ module.exports = {
     }
   },
   lend: async (req, res) => {
-    const { id, name, cellphone } = req.body;
+    const { id } = req.params;
+    const { name, cellphone } = req.body;
     try {
       let book = await Book.findById(id);
       if (!book.isBorrowed) {
-        book.lendto.push({ name: name, cellphone: cellphone });
+        book.lendto.push({ name, cellphone });
         book.isBorrowed = true;
         let result = await book.save();
         res.status(200).json({ message: "Book borrowed successfully", result });
@@ -77,7 +78,7 @@ module.exports = {
     }
   },
   recover: async (req, res) => {
-    const { id } = req.body;
+    const { id } = req.params;
     try {
       let book = await Book.findById(id);
       if (book.isBorrowed) {
