@@ -2,6 +2,7 @@ const express = require('express');
 const bookController = require("../controllers/bookController");
 const BookValidator = require("../middlewares/bookValidator");
 
+
 const router = express.Router();
 
 /**
@@ -103,6 +104,7 @@ const router = express.Router();
  *        "400":
  *          description: Unexpected error occurred
  */
+
 
 router.get("/", bookController.getAll);
 
