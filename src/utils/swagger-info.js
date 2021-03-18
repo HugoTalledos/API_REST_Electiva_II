@@ -1,6 +1,7 @@
 module.exports = {
-  title: 'Web development project',
+  title: 'API REST Documentation',
   version: '1.0.0',
   description:
-    'This is the documentation of the web development project',
+    'REST API documentation for books for the first Electiva II project',
+    author:"Hugo Talledos & Cristian Arias"
 };
