@@ -1,4 +1,12 @@
-# Schema
+# API REST Electiva II
+## Technologies
+- Node.js
+- Swagger
+- Git
+- VSCode
+- Mongo (Atlas)
+
+## Schema
 ## _Book schema description_
 Book schema in database
 - Title:
