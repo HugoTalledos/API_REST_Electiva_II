@@ -6,6 +6,10 @@ const BookSchema = new Schema(
     title: { type: String, required: true },
     description: { type: String, required: false },
     author: { type: String, required: true },
+    cover: { 
+      url: { type: String, required: false },
+      alt: { type: String, required: false },
+    },
     gender: { type: String, required: false },
     editorial: { type: String, required: false },
     deleted: { type: Boolean, required: false, default: false },
