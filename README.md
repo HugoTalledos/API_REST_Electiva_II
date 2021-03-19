@@ -7,7 +7,7 @@
 - Mongo (Atlas)
 
 ## Component diagram
-(/Diagram.jpg?raw=true "Component diagrma")
+(Diagram.jpg?raw=true "Component diagrma")
 
 ## Schema
 ## _Book schema description_
