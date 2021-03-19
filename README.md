@@ -54,4 +54,7 @@ description: Cellphone number of the person to whom a book was loaned
 
 For more information check official documentation: 
 ##### uriBase:
-[uriBase/api/docs][df1]
+###### API REST Documentation
+localhost:<PORT>/api/docs
+###### Consume API REST
+localhost:<PORT>/api/book
