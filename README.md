@@ -7,7 +7,7 @@
 - Mongo (Atlas)
 
 ## Component diagram
-![Alt text](https://github.com/HugoTalledos/API_REST_Electiva_II/blob/master/Diagram.jpg "Component diagrma")
+![Alt text](Diagram.jpg "Component diagrma")
 
 ## Schema
 ## _Book schema description_
