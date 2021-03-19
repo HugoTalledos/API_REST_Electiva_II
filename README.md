@@ -55,6 +55,6 @@ description: Cellphone number of the person to whom a book was loaned
 For more information check official documentation: 
 ## URI API REST:
 #### API REST Documentation
-localhost:<PORT>/api/docs
+localhost:PORT/api/docs
 #### Consume API REST
-localhost:<PORT>/api/book
+localhost:PORT/api/book
