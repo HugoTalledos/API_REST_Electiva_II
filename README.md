@@ -6,7 +6,7 @@
 - VSCode
 - Mongo (Atlas)
 
-##Component diagram
+## Component diagram
 (/Diagram.jpg?raw=true "Component diagrma")
 
 ## Schema
