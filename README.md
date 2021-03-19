@@ -9,25 +9,25 @@
 ## Schema
 ## _Book schema description_
 Book schema in database
-- Title:
+- **Title:**
  type: String
  description: Title od the book.
-- Description:
+- **Description:**
 type: String
 description: Description of the book.
-- Author:
+- **Author:**
 type: String
 description: Author of the book.
-- Cover:
+- **Cover:**
 type: Object
 description: Information about the book cover
-- Gender:
+- **Gender:**
 type: String
 description: Gender of the book.
-- Editorial:
+- **Editorial:**
 type: String
 description: Editorial of the book.
-- Deleted:
+- **Deleted:**
 type: Boolean
 description: State of the book 
 - isBorrowed:
@@ -39,10 +39,10 @@ description: basic information of the person who acquired the book
 
 ## LendSchema
 Lead Schema collection
-- Name: 
+- **Name:** 
 type: string
 description: Name of the person to whom a book was loaned
-- CellPhone:
+- **CellPhone:**
 type: string
 description: Cellphone number of the person to whom a book was loaned
 
