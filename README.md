@@ -53,8 +53,8 @@ type: string
 description: Cellphone number of the person to whom a book was loaned
 
 For more information check official documentation: 
-##### uriBase:
-###### API REST Documentation
+## URI API REST:
+#### API REST Documentation
 localhost:<PORT>/api/docs
-###### Consume API REST
+#### Consume API REST
 localhost:<PORT>/api/book
