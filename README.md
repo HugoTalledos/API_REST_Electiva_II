@@ -10,7 +10,7 @@
 ![Alt text](Diagram.jpg "Component diagrma")
 
 ## Schema
-## _Book schema description_
+### _Book schema description_
 Book schema in database
 - **Title:**
  type: String
@@ -40,7 +40,7 @@ description: Indicate if the book is on loan.
 type: schema (LendSchema)
 description: basic information of the person who acquired the book
 
-## LendSchema
+### LendSchema
 Lead Schema collection
 - **Name:** 
 type: string
