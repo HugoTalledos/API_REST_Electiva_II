@@ -6,6 +6,9 @@
 - VSCode
 - Mongo (Atlas)
 
+##Component diagram
+(/Diagram.jpg?raw=true "Component diagrma")
+
 ## Schema
 ## _Book schema description_
 Book schema in database
