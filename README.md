@@ -1,4 +1,7 @@
 # API REST Electiva II
+### Members
+- [Hugo Armando Talledos Rodrigues](https://github.com/HugoTalledos)
+- [Cristian Andrés Arias Páez](https://github.com/AriasPaez)
 ## Technologies
 - Node.js
 - Swagger
@@ -33,10 +36,10 @@ description: Editorial of the book.
 - **Deleted:**
 type: Boolean
 description: State of the book 
-- isBorrowed:
+- **isBorrowed:**
 type: Boolean
 description: Indicate if the book is on loan.
-- lendto:
+- **lendto:**
 type: schema (LendSchema)
 description: basic information of the person who acquired the book
 
