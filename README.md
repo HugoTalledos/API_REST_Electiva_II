@@ -40,7 +40,7 @@ description: Indicate if the book is on loan.
 type: schema (LendSchema)
 description: basic information of the person who acquired the book
 
-### LendSchema
+### _LendSchema_
 Lead Schema collection
 - **Name:** 
 type: string
